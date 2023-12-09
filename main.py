@@ -7,7 +7,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 from itertools import product
 
-
+"""
 
 def generate_distributions(N, M):
     colors = ['Color1', 'Color2', 'Color3']  # Add your actual color names or identifiers here
@@ -41,3 +41,14 @@ distributions = generate_distributions(N, M)
 for idx, distribution in enumerate(distributions, start=1):
     print(f'Distribution {idx}: {distribution}')
 
+"""
+
+
+elements = ['A','B','C']
+
+# Generate all possible pairs
+combinations = list(product(elements, repeat=2))
+
+# Print the result
+for case, combination in enumerate(combinations, start=1):
+    print(f"case{case} -> {list(combination)}")
