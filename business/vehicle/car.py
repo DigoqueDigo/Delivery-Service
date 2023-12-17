@@ -1,4 +1,4 @@
-from vehicle.vehicle import Vehicle
+from business.vehicle.vehicle import Vehicle
 
 class Car(Vehicle):
 

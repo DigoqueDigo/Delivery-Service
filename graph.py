@@ -20,32 +20,9 @@ class Graph:
         for node in self.graph:
             self.dictionary[node] = self.dijkstraAll(node)
 
-    
-    def plot(self):
 
-        layout = nx.spring_layout(self.graph)
-        etiquetas = {(i, j): self.graph[i][j]['distance'] for i, j in self.graph.edges()}
-
-        nx.draw(
-            self.graph,
-            layout,
-            with_labels = True,
-            node_size = 700,
-            node_color = "skyblue",
-            font_size = 10,
-            font_color = "black",
-            font_weight = "bold",
-            edge_color = "gray",
-            linewidths = 1)
-
-        nx.draw_networkx_edge_labels(
-            self.graph,
-            layout,
-            edge_labels = etiquetas,
-            font_size = 10,
-            font_color = "black")
-        
-        plt.show()
+    def distanceBetween(self,source,dest):
+        return self.dictionary[source][dest]
 
     
     def dijkstraAll(self,source):
@@ -72,3 +49,30 @@ class Graph:
                     queue.append((distancia,neighbourNode))
 
         return distanceList
+
+
+    def plot(self):
+
+        layout = nx.spring_layout(self.graph)
+        etiquetas = {(i, j): self.graph[i][j]['distance'] for i, j in self.graph.edges()}
+
+        nx.draw(
+            self.graph,
+            layout,
+            with_labels = True,
+            node_size = 700,
+            node_color = "skyblue",
+            font_size = 10,
+            font_color = "black",
+            font_weight = "bold",
+            edge_color = "gray",
+            linewidths = 1)
+
+        nx.draw_networkx_edge_labels(
+            self.graph,
+            layout,
+            edge_labels = etiquetas,
+            font_size = 10,
+            font_color = "black")
+        
+        plt.show()

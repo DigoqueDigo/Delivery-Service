@@ -15,7 +15,7 @@ class Combiner:
 
     def generateBoxDistributions(self,NBoxes,elements):
 
-        boxes = [f'{i+1}' for i in range(NBoxes)]
+        boxes = [f'{i}' for i in range(NBoxes)]
 
         all_distributions = list(product(boxes, repeat=len(elements)))
         distributions_in_boxes = []

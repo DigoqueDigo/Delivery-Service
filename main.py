@@ -1,9 +1,13 @@
-from vehicle import Vehicle, Bike, Car, Scooter
-from graph.graph import Graph
-from job import Job
-from service import Service
+from business.manager import Manager
+from business.vehicle.bike import Bike
+from business.vehicle.scooter import Scooter
+from business.vehicle.car import Car
+from business.vehicle.vehicle import Vehicle
+from graph import Graph
 from datetime import timedelta
 
+
+"""
 service = Service()
 
 service.addJob(Job('Milhazes',timedelta(hours=10,minutes=15),60))
@@ -47,12 +51,9 @@ graph.addEdge('Milhazes','Cristelo',30)
 
 
 graph.loadDictionary()
-print(graph)
-
 
 graph.plot()
 
 print(bike)
 print(scooter)
 print(car)
-"""
