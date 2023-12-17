@@ -8,7 +8,7 @@ class Scooter(Vehicle):
     pollution = 0.2
 
 
-    def __init__(self): 
+    def __init__(self):
         super().__init__(
             Scooter.speed,
             Scooter.capacity,

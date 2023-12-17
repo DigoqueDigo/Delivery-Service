@@ -25,7 +25,7 @@ class Vehicle:
     def getCapacity(self):
         return self.capacity
 
-    
+
     def getDecrease(self):
         return self.decrease
 
@@ -43,7 +43,7 @@ class Vehicle:
             raise Exception("Too much cargo")
         self.cargo = cargo
 
-    
+
     def decreaseCargo(self,cargo):
         self.cargo -= cargo
 

@@ -16,9 +16,9 @@ class Combiner:
 
         all_distributions = list(product(boxes, repeat=len(elements)))
         distributions_in_boxes = []
-        
+
         for distribution in all_distributions:
-            
+
             distribution_in_boxes = {box: [] for box in boxes}
 
             for ball, box in zip(elements, distribution):

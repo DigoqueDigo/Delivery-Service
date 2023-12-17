@@ -7,7 +7,7 @@ class Bike(Vehicle):
     decrease = 0.6
     pollution = 0.05
 
-    
+
     def __init__(self):
         super().__init__(
             Bike.speed,

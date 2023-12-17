@@ -1,0 +1,32 @@
+[
+  {
+    "time": "10:19:15",
+    "weight": 10,
+    "destination": "Massachusetts",
+    "distance": 0
+  },
+  {
+    "time": "10:55:03",
+    "weight": 15,
+    "destination": "California",
+    "distance": 0
+  },
+  {
+    "time": "15:45:32",
+    "weight": 2,
+    "destination": "Texas",
+    "distance": 0
+  },
+  {
+    "time": "16:42:09",
+    "weight": 42,
+    "destination": "Michigan",
+    "distance": 0
+  },
+  {
+    "time": "18:40:00",
+    "weight": 6,
+    "destination": "Nebraska",
+    "distance": 0
+  }
+]

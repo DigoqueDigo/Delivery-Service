@@ -12,19 +12,23 @@ class Graph:
         self.graph.add_node(node)
 
 
-    def addEdge(self,source,dest,weigth):
-        self.graph.add_edge(source,dest,distance = weigth)
+    def addEdge(self,source,destination,weigth):
+        self.graph.add_edge(source,destination,distance = weigth)
 
-    
+
+    def containsNode(self,node):
+        return node in self.graph
+
+
+    def distanceBetween(self,source,destination):
+        return self.dictionary[source][destination]
+
+
     def loadDictionary(self):
         for node in self.graph:
             self.dictionary[node] = self.dijkstraAll(node)
 
 
-    def distanceBetween(self,source,dest):
-        return self.dictionary[source][dest]
-
-    
     def dijkstraAll(self,source):
 
         distanceList = {node: float('inf') for node in self.graph}
@@ -74,5 +78,5 @@ class Graph:
             edge_labels = etiquetas,
             font_size = 10,
             font_color = "black")
-        
+
         plt.show()

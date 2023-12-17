@@ -1,6 +1,9 @@
 from graph import Graph
 from random import randint
 from combiner import Combiner
+from business.job import Job
+from business.courier import Courier
+from business.vehicle import Car, Bike, Scooter
 
 class Manager:
 
@@ -11,19 +14,44 @@ class Manager:
         self.combiner = Combiner()
 
 
-    def addJob(self,job):
-        self.jobsList.append(job)
+    def showJobs(self):
+        result = [str(jobs) for jobs in self.jobsList]
+        return '\n'.join(result)
 
 
-    def addCourier(self,courier):
-        self.courierList.append(courier)
+    def showCouriers(self):
+        result = [str(courier) for courier in self.courierList]
+        return '\n'.join(result)
+
+
+    def loadJobs(self,dictionary):
+        for job in dictionary:
+            self.jobsList.append(Job(
+                job['time'],
+                job['weight'],
+                job['destination']))
+
+
+    def loadCouriers (self,dictionary):
+        for courier in dictionary:
+
+            if courier['vehicle'] == 'car':
+                vehicle = Car()
+
+            elif courier['vehicle'] == 'scooter':
+                vehicle = Scooter()
+
+            else:
+                vehicle = Bike()
+
+            self.courierList.append(Courier(
+                vehicle,
+                courier['name']))
 
 
     def loadGraph(self,dictionary):
-
         for sourceNode in dictionary:
             self.graph.addNode(sourceNode)
-
             for neighbourNode in dictionary[sourceNode]:
                 self.graph.addEdge(sourceNode,neighbourNode,randint(0,100))
 
@@ -39,7 +67,7 @@ class Manager:
         courierList.append(Courier(Scooter()))
         return self.combiner.generateDistribution(courierList,len(self.jobsList))
 
-    
+
     def generateJobsDistributions(self):
         self.jobsList = sorted(self.jobsList, key=lambda x: x.getTime())
         return self.combiner.generateBoxDistributions(
@@ -58,7 +86,7 @@ class Manager:
         )
 
         for currentJobCombination in jobCombinations:
-            
+
             currentCost = 0
 
             for i in range(len(self.courierList)):
