@@ -6,11 +6,8 @@ class Combiner:
         pass
 
 
-    def generateDistribution(self,elements):
-        return list(
-            product(
-                elements,
-                repeat=len(elements)))
+    def generateDistribution(self,elements,repeats):
+        return list(product(elements,repeat=repeats))
 
 
     def generateBoxDistributions(self,NBoxes,elements):

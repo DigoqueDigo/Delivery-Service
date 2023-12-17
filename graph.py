@@ -53,7 +53,7 @@ class Graph:
 
     def plot(self):
 
-        layout = nx.spring_layout(self.graph)
+        layout = nx.kamada_kawai_layout(self.graph)
         etiquetas = {(i, j): self.graph[i][j]['distance'] for i, j in self.graph.edges()}
 
         nx.draw(

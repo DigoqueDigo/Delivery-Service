@@ -1,4 +1,5 @@
 from graph import Graph
+from random import randint
 from combiner import Combiner
 
 class Manager:
@@ -9,7 +10,7 @@ class Manager:
         self.courierList = list()
         self.combiner = Combiner()
 
-    
+
     def addJob(self,job):
         self.jobsList.append(job)
 
@@ -17,13 +18,14 @@ class Manager:
     def addCourier(self,courier):
         self.courierList.append(courier)
 
-    
-    def addNode(self,node):
-        self.graph.addNode(node)
 
+    def loadGraph(self,dictionary):
 
-    def addEdge(self,source,dest,weigth):
-        self.graph.addEdge(source,dest,weigth)
+        for sourceNode in dictionary:
+            self.graph.addNode(sourceNode)
+
+            for neighbourNode in dictionary[sourceNode]:
+                self.graph.addEdge(sourceNode,neighbourNode,randint(0,100))
 
 
     def plotGraph(self):
@@ -31,7 +33,11 @@ class Manager:
 
 
     def generateCourierDistribution(self):
-        return self.combiner.generateDistribution(self.courierList)
+        courierList = list()
+        courierList.append(Courier(Car()))
+        courierList.append(Courier(Bike()))
+        courierList.append(Courier(Scooter()))
+        return self.combiner.generateDistribution(courierList,len(self.jobsList))
 
     
     def generateJobsDistributions(self):
@@ -44,19 +50,20 @@ class Manager:
     def findRouteOneState(self):
 
         bestCost = float('inf')
-        bestCombination = []
+        bestJobCombination = []
 
-        jobsCombinations = self.combiner.generateBoxDistributions(
+        jobCombinations = self.combiner.generateBoxDistributions(
             len(self.courierList),
             self.jobsList
         )
 
-        for currentCombination in jobsCombinations:
+        for currentJobCombination in jobCombinations:
+            
             currentCost = 0
 
             for i in range(len(self.courierList)):
 
-                self.courierList[i].setJobs(currentCombination[i])
+                self.courierList[i].setJobs(currentJobCombination[i])
                 currentCost += self.courierList[i].doJobs()
 
                 if currentCost == float('inf'):
@@ -64,6 +71,27 @@ class Manager:
 
             if currentCost < bestCost:
                 bestCost = currentCost
-                bestCombination = currentCombination
+                bestJobCombination = currentJobCombination
 
-        return (bestCost,bestCombination)
+        return (bestCost,bestJobCombination)
+
+
+    def findRouteMultipleStates(self):
+
+        bestCost = float('inf')
+        bestJobCombination = []
+        bestCourierCombination = []
+
+        courierCombinations = self.generateCourierDistribution()
+
+        for currentCourierCombination in courierCombinations:
+
+            self.courierList = currentCourierCombination
+            (currentCost,currentJobCombination) = self.findRouteOneState()
+
+            if cost < best:
+                bestCost = currentCost
+                bestJobCombination = currentJobCombination
+                bestCourierCombination = currentCourierCombination
+
+        return (bestCost,bestJobCombination,bestCourierCombination)

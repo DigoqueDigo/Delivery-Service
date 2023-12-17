@@ -5,7 +5,8 @@ from business.vehicle.car import Car
 from business.vehicle.vehicle import Vehicle
 from graph import Graph
 from datetime import timedelta
-
+from itertools import product
+from UI.textUI import TextUI
 
 """
 service = Service()
@@ -31,10 +32,10 @@ for dictionary in combinationsJ:
     print('-----------------')
 
 
-"""
 bike = Bike()
 scooter = Scooter()
 car = Car()
+
 
 graph = Graph()
 
@@ -48,7 +49,13 @@ graph.addEdge('Milhazes','Vilar de Figos',30)
 graph.addEdge('Vilar de Figos','Faria',55)
 graph.addEdge('Cristelo','Faria',5)
 graph.addEdge('Milhazes','Cristelo',30)
+graph.addEdge('Vilar de Figos','Milhazes',100)
 
+aa = graph.dijkstraAll('Faria')
+
+print(aa)
+
+graph.plot()
 
 graph.loadDictionary()
 
@@ -57,3 +64,7 @@ graph.plot()
 print(bike)
 print(scooter)
 print(car)
+"""
+
+textUI = TextUI()
+textUI.run()
