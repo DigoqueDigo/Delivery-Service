@@ -5,13 +5,12 @@ class Reader:
     def __init__(self):
         pass
 
-    
+
     def readInt(self):
         try:
             return int(input())
         except:
             raise Exception()
-
 
 
     def readLine(self):

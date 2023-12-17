@@ -1,6 +1,6 @@
 from UI.menu import Menu
 from UI.reader import Reader
-from colorama import Fore, Style
+from business.job import Job
 from business.manager import Manager
 
 class TextUI:
@@ -12,31 +12,53 @@ class TextUI:
 
 
     def setMenu(self):
-        self.menu.addOption('1 - Load map', self.loadMap)
-        self.menu.addOption('2 - Plot map', self.plotMap)
-        self.menu.addOption('3 - Add job', self.implementing)
-        self.menu.addOption('4 - Add courier', self.implementing)
-        self.menu.addOption('5 - Find best routes (limited resources)', self.implementing)
-        self.menu.addOption('6 - Find best routes (unlimited resources)', self.implementing)
-        self.menu.addOption('7 - Exit', self.byMessage)
+        self.menu.addOption('1 - Load Map', self.loadMap)
+        self.menu.addOption('2 - Plot Map', self.plotMap)
+        self.menu.addOption('3 - Load Jobs', self.loadJobs)
+        self.menu.addOption('4 - Show Jobs', self.showJobs)
+        self.menu.addOption('5 - Load Couriers', self.loadCouriers)
+        self.menu.addOption('6 - Load Couriers', self.showCouriers)
+        self.menu.addOption('7 - Find Best Routes (limited resources)', self.implementing)
+        self.menu.addOption('8 - Find Best Routes (unlimited resources)', self.implementing)
+        self.menu.addOption('9 - Exit', self.byMessage)
 
 
     def implementing(self):
-        print("Implementing...")
+        self.menu.printErrorMessage("Implementing...")
 
 
-    def loadMap(self):
-        print(f'{Style.BRIGHT}Enter an file: {Style.RESET_ALL}', end = '')
-        dictionary = self.reader.readDictionary(self.reader.readLine())
-        self.manager.loadGraph(dictionary)
-    
+    def byMessage(self):
+        self.menu.printSucessMessage("See ya!")
+
 
     def plotMap(self):
         self.manager.plotGraph()
 
-    
-    def byMessage(self):
-        print(f'{Fore.GREEN}{Style.BRIGHT}See ya!{Style.RESET_ALL}')
+
+    def loadMap(self):
+        path = self.menu.getLine('Enter an file: ')
+        dictionary = self.reader.readDictionary(path)
+        self.manager.loadGraph(dictionary)
+
+
+    def loadJobs(self):
+        path = self.menu.getLine('Enter an file: ')
+        dictionary = self.reader.readDictionary(path)
+        self.manager.loadJobs(dictionary)
+
+
+    def loadCouriers(self):
+        path = self.menu.getLine('Enter an file: ')
+        dictionary = self.reader.readDictionary(path)
+        self.manager.loadCouriers(dictionary)
+
+
+    def showJobs(self):
+        print(self.manager.showJobs())
+
+
+    def showCouriers(self):
+        print(self.manager.showCouriers())
 
 
     def run(self):
