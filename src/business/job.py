@@ -6,7 +6,6 @@ class Job:
         self.time = time
         self.weight = weight
         self.destination = destination
-        self.distance = 0
 
         if not(isinstance(time,timedelta)):
             time_datetime = datetime.strptime(time,'%H:%M:%S')
@@ -20,7 +19,6 @@ class Job:
         return (
             f'Time: {self.time}\t'
             f'Weight: {self.weight}\t'
-            f'Distance: {self.distance}\t'
             f'Destination: {self.destination}'
         )
 
@@ -35,11 +33,3 @@ class Job:
 
     def getWeight(self):
         return self.weight
-
-
-    def getDistance(self):
-        return self.distance
-
-
-    def setDistance(self,distance):
-        self.distance = distance

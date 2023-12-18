@@ -1,18 +1,22 @@
 [
     {
         "name": "Diogo",
+        "startPoint": "Montana",
         "vehicle": "car"
     },
     {
         "name": "Sandra",
+        "startPoint": "Florida",
         "vehicle": "car"
     },
     {
         "name": "Joao",
+        "startPoint": "Florida",
         "vehicle": "bike"
     },
     {
         "name": "Pedro",
+        "startPoint": "Alabama",
         "vehicle": "scooter"
     }
 ]

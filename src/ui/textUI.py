@@ -17,9 +17,9 @@ class TextUI:
         self.menu.addOption('3 - Load Jobs', self.loadJobs)
         self.menu.addOption('4 - Show Jobs', self.showJobs)
         self.menu.addOption('5 - Load Couriers', self.loadCouriers)
-        self.menu.addOption('6 - Load Couriers', self.showCouriers)
-        self.menu.addOption('7 - Find Best Routes (limited resources)', self.implementing)
-        self.menu.addOption('8 - Find Best Routes (unlimited resources)', self.implementing)
+        self.menu.addOption('6 - Show Couriers', self.showCouriers)
+        self.menu.addOption('7 - Find Best Routes (limited resources)', self.limitedResources)
+        self.menu.addOption('8 - Find Best Routes (unlimited resources)', self.unlimitedResources)
         self.menu.addOption('9 - Exit', self.byMessage)
 
 
@@ -27,12 +27,12 @@ class TextUI:
         self.menu.printErrorMessage("Implementing...")
 
 
-    def byMessage(self):
-        self.menu.printSucessMessage("See ya!")
-
-
     def plotMap(self):
         self.manager.plotGraph()
+
+
+    def byMessage(self):
+        self.menu.printSucessMessage("See ya!")
 
 
     def loadMap(self):
@@ -51,6 +51,25 @@ class TextUI:
         path = self.menu.getLine('Enter an file: ')
         dictionary = self.reader.readDictionary(path)
         self.manager.loadCouriers(dictionary)
+
+    
+    def limitedResources(self):
+        cost, combination = self.manager.findRouteOneState()
+        print(cost)
+        for key in combination:
+            for objeto in dictionary[key]:
+                print(objeto)
+            print('---------------')
+
+
+    
+    def unlimitedResources(self):
+        cost, combination = self.manager.findRouteMultipleStates()
+        print(cost)
+        for key in combination:
+            for objeto in dictionary[key]:
+                print(objeto)
+            print('---------------')
 
 
     def showJobs(self):

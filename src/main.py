@@ -4,26 +4,28 @@ from business.vehicle.scooter import Scooter
 from business.vehicle.car import Car
 from business.vehicle.vehicle import Vehicle
 from graph import Graph
-from datetime import timedelta
+from business.job import Job
+from business.courier import Courier
+from datetime import timedelta, datetime
 from itertools import product
 from ui.textUI import TextUI
 
 """
-service = Service()
+manager = Manager()
 
-service.addJob(Job('Milhazes',timedelta(hours=10,minutes=15),60))
-service.addJob(Job('Faria',timedelta(hours=9,minutes=30),55))
+manager.addJob(Job(timedelta(hours=10,minutes=15),60,'Miilhazes'))
+manager.addJob(Job(timedelta(hours=9,minutes=30),55,'Faria'))
 
+manager.addCourier(Courier(Car()))
+manager.addCourier(Courier(Scooter()))
 
-service.addVehicle(Bike())
-service.addVehicle(Scooter())
-
-combinationsJ = service.generateJobsDistributions()
-combinationsV = service.generateVehiclesDistribution()
+combinationsJ = manager.generateJobsDistributions()
+combinationsC = manager.generateCouriersDistribution()
 
 for dictionary in combinationsJ:
     for key in dictionary:
         print(key)
+        print(isinstance(key,str))
         for objeto in dictionary[key]:
             print(objeto)
 
