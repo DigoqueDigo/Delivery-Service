@@ -1,0 +1,35 @@
+[35m[1mDelivery Service[0m
+[33m[1m1 - Load Map[0m
+[33m[1m2 - Plot Map[0m
+[33m[1m3 - Load Jobs[0m
+[33m[1m4 - Show Jobs[0m
+[33m[1m5 - Load Couriers[0m
+[33m[1m6 - Show Couriers[0m
+[33m[1m7 - Find Best Routes (limited resources)[0m
+[33m[1m8 - Find Best Routes (unlimited resources)[0m
+[33m[1m9 - Exit[0m
+[1mEnter an option: [0m[35m[1mDelivery Service[0m
+[33m[1m1 - Load Map[0m
+[33m[1m2 - Plot Map[0m
+[33m[1m3 - Load Jobs[0m
+[33m[1m4 - Show Jobs[0m
+[33m[1m5 - Load Couriers[0m
+[33m[1m6 - Show Couriers[0m
+[33m[1m7 - Find Best Routes (limited resources)[0m
+[33m[1m8 - Find Best Routes (unlimited resources)[0m
+[33m[1m9 - Exit[0m
+[1mEnter an option: [0mName: Diogo	Start point: Montana	Start time: 8:30:00	Vehicle: Cargo: 0	Speed: 10	Capacity: 5	Decrease: 0.6	Pollution: 0.05
+Job: 
+Name: Filipe	Start point: Florida	Start time: 8:30:00	Vehicle: Cargo: 0	Speed: 10	Capacity: 5	Decrease: 0.6	Pollution: 0.05
+Job: 
+[35m[1mDelivery Service[0m
+[33m[1m1 - Load Map[0m
+[33m[1m2 - Plot Map[0m
+[33m[1m3 - Load Jobs[0m
+[33m[1m4 - Show Jobs[0m
+[33m[1m5 - Load Couriers[0m
+[33m[1m6 - Show Couriers[0m
+[33m[1m7 - Find Best Routes (limited resources)[0m
+[33m[1m8 - Find Best Routes (unlimited resources)[0m
+[33m[1m9 - Exit[0m
+[1mEnter an option: [0m[32m[1mSee ya![0m

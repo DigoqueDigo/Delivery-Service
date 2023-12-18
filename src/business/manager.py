@@ -2,6 +2,7 @@ import copy
 from graph import Graph
 from random import randint
 from combiner import Combiner
+from utils.creator import Creator
 from business.job import Job
 from business.courier import Courier
 from business.vehicle import Car, Bike, Scooter
@@ -40,18 +41,8 @@ class Manager:
 
     def loadCouriers (self,dictionary):
         for courier in dictionary:
-
-            if courier['vehicle'] == 'car':
-                vehicle = Car()
-
-            elif courier['vehicle'] == 'scooter':
-                vehicle = Scooter()
-
-            else:
-                vehicle = Bike()
-
             self.courierList.append(Courier(
-                vehicle,
+                Creator.createVehicle(courier['vehicle']),
                 courier['name'],
                 courier['startPoint'],
                 courier['startTime']))
@@ -66,11 +57,15 @@ class Manager:
 
 
     def generateCouriersDistribution(self):
-        courierList = list()
-        courierList.append(Courier(Car()))
-        courierList.append(Courier(Bike()))
-        courierList.append(Courier(Scooter()))
-        return self.combiner.generateDistribution(courierList,len(self.jobsList))
+        courierList = []
+        combinations = self.combiner.generateDistribution(['car','bike','scooter'],len(self.jobsList))
+
+        for i in range(len(combinations)):
+            courierList.append(list())
+            for vehicle in combinations[i]:
+                courierList[i].append(Courier(Creator.createVehicle(vehicle)))
+
+        return courierList
 
 
     def generateJobsDistributions(self):
@@ -107,7 +102,8 @@ class Manager:
                 bestCost = currentCost
                 bestCourierCombination = copy.deepcopy(self.courierList)
 
-            print('------------------------------------')
+            for courier in self.courierList:
+                courier.clearJobs()
 
         return bestCost, bestCourierCombination
 
@@ -115,19 +111,18 @@ class Manager:
     def findRouteMultipleStates(self):
 
         bestCost = float('inf')
-        bestJobCombination = []
         bestCourierCombination = []
 
-        courierCombinations = self.generateCouriersDistribution()
+        couriersCombinations = self.generateCouriersDistribution()
 
-        for currentCourierCombination in courierCombinations:
+        for currentCourierCombination in couriersCombinations:
 
             self.courierList = currentCourierCombination
-            (currentCost,currentJobCombination) = self.findRouteOneState()
-
-            if cost < best:
+            currentCost, currentCourierCombination = self.findRouteOneState()
+ 
+            if currentCost < bestCost:
                 bestCost = currentCost
-                bestJobCombination = currentJobCombination
-                bestCourierCombination = currentCourierCombination
+                bestCourierCombination = copy.deepcopy(currentCourierCombination)
 
-        return bestCost, bestJobCombination, bestCourierCombination
+        self.courierList = []
+        return bestCost, bestCourierCombination

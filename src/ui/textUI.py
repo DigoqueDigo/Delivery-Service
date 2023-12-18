@@ -45,13 +45,13 @@ class TextUI:
 
     def loadJobs(self):
     #    path = self.menu.getLine('Enter an file: ')
-        dictionary = self.reader.readDictionary('data/aa.json')
+        dictionary = self.reader.readDictionary('data/jobs.json')
         self.manager.loadJobs(dictionary)
 
 
     def loadCouriers(self):
     #    path = self.menu.getLine('Enter an file: ')
-        dictionary = self.reader.readDictionary('data/couriers.json')
+        dictionary = self.reader.readDictionary('data/aa.json')
         self.manager.loadCouriers(dictionary)
 
     

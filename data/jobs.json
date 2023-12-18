@@ -1,12 +1,12 @@
 [
   {
-    "code": "BBBB",
+    "code": "AAAA",
     "time": "08:40:00",
     "weight": 30,
     "destination": "California"
   },
   {
-    "code": "AAAA",
+    "code": "BBBB",
     "time": "10:19:15",
     "weight": 10,
     "destination": "Massachusetts"
