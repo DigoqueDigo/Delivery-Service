@@ -1,6 +1,7 @@
 from ui.menu import Menu
 from ui.reader import Reader
 from business.job import Job
+from utils.saver import Saver
 from business.manager import Manager
 
 class TextUI:
@@ -8,6 +9,7 @@ class TextUI:
     def __init__(self):
         self.reader = Reader()
         self.manager = Manager()
+        self.saver = Saver('solution.txt')
         self.menu = Menu("Delivery Service")
 
 
@@ -43,7 +45,7 @@ class TextUI:
 
     def loadJobs(self):
     #    path = self.menu.getLine('Enter an file: ')
-        dictionary = self.reader.readDictionary('data/jobs.json')
+        dictionary = self.reader.readDictionary('data/aa.json')
         self.manager.loadJobs(dictionary)
 
 
@@ -54,22 +56,13 @@ class TextUI:
 
     
     def limitedResources(self):
-        cost, combination, a = self.manager.findRouteOneState()
-        print(cost)
-        for key in combination:
-            for objeto in combination[key]:
-                print(objeto)
-            print('---------------')
+        cost, couriers = self.manager.findRouteOneState()
+        self.saver.saveSolution(cost,couriers)
+        
 
-
-    
     def unlimitedResources(self):
-        cost, combination, a = self.manager.findRouteMultipleStates()
-        print(cost)
-        for key in combination:
-            for objeto in combination[key]:
-                print(objeto)
-            print('---------------')
+        cost, couriers = self.manager.findRouteMultipleStates()
+        self.saver.saveSolution(cost,couriers)
 
 
     def showJobs(self):

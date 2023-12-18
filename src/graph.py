@@ -5,7 +5,8 @@ class Graph:
 
     def __init__(self):
         self.graph = nx.Graph()
-        self.dictionary = dict()
+        self.pathDictionary = dict()
+        self.distanceDictionary = dict()
 
 
     def addNode(self,node):
@@ -17,17 +18,25 @@ class Graph:
 
 
     def distanceBetween(self,source,destination):
-        return self.dictionary[source][destination]
+        return self.distanceDictionary[source][destination]
+
+
+    def pathBetween(self,source,destination):
+        return self.pathDictionary[source][destination]
 
 
     def loadDictionary(self):
         for node in self.graph:
-            self.dictionary[node] = self.dijkstraAll(node)
+            distanceList, pathList = self.dijkstraAll(node)
+            self.distanceDictionary[node] = distanceList
+            self.pathDictionary[node] = pathList
 
 
     def dijkstraAll(self,source):
 
         distanceList = {node: float('inf') for node in self.graph}
+        pathList = {node: [] for node in self.graph}
+
         distanceList[source] = 0
         queue = [(0,source)]
 
@@ -41,14 +50,19 @@ class Graph:
             for neighbourNode in self.graph[currentNode]:
 
                 neighbourDisctance = self.graph[currentNode][neighbourNode]['distance']
-                distancia = currentDistance + neighbourDisctance
+                distance = currentDistance + neighbourDisctance
 
-                if distancia < distanceList[neighbourNode]:
+                if distance < distanceList[neighbourNode]:
 
-                    distanceList[neighbourNode] = distancia
-                    queue.append((distancia,neighbourNode))
+                    distanceList[neighbourNode] = distance
+                    queue.append((distance,neighbourNode))
+                    pathList[neighbourNode] = pathList[currentNode] + [currentNode]
 
-        return distanceList
+        for node in self.graph:
+            if node != source:
+                pathList[node] = pathList[node] + [node]
+
+        return distanceList, pathList
 
 
     def plot(self):

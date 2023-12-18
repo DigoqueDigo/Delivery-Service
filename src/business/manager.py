@@ -1,3 +1,4 @@
+import copy
 from graph import Graph
 from random import randint
 from combiner import Combiner
@@ -73,7 +74,6 @@ class Manager:
 
 
     def generateJobsDistributions(self):
-        self.jobsList = sorted(self.jobsList, key=lambda x: x.getTime())
         return self.combiner.generateBoxDistributions(
             len(self.courierList),
             self.jobsList)
@@ -81,9 +81,8 @@ class Manager:
 
     def findRouteOneState(self):
 
-        currentCost = 0
         bestCost = float('inf')
-        bestJobCombination = []
+        bestCourierCombination = []
 
         jobCombinations = self.combiner.generateBoxDistributions(
             len(self.courierList),
@@ -92,19 +91,25 @@ class Manager:
 
         for currentJobCombination in jobCombinations:
 
+            currentCost = 0
+
             for key in range(len(self.courierList)):
 
-                self.courierList[key].setJobs(currentJobCombination[str(key)])
-                currentCost += self.courierList[key].doJobs(self.graph.distanceBetween)
+                currentCost += self.courierList[key].doJobs(
+                    currentJobCombination[str(key)],
+                    self.graph.distanceBetween,
+                    self.graph.pathBetween)
 
                 if currentCost == float('inf'):
                     break
 
             if currentCost < bestCost:
                 bestCost = currentCost
-                bestJobCombination = currentJobCombination
+                bestCourierCombination = copy.deepcopy(self.courierList)
 
-        return bestCost, bestJobCombination, self.courierList
+            print('------------------------------------')
+
+        return bestCost, bestCourierCombination
 
 
     def findRouteMultipleStates(self):

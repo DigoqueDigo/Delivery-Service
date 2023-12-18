@@ -8,6 +8,7 @@ class Courier:
 
     def __init__(self,vehicle,name='worker',startPoint='Missouri',startTime=timedelta(hours=9)):
         self.jobs = list()
+        self.paths = list()
         self.name = name
         self.vehicle = vehicle
         self.startPoint = startPoint
@@ -17,12 +18,14 @@ class Courier:
 
 
     def __str__(self):
-        return (
-            f'Name: {self.name}\t'
-            f'Start point: {self.startPoint}\t'
-            f'Start time: {self.startTime}\t'
-            f'Vehicle: {self.vehicle}'
-        )
+        buffer = ''
+        buffer += 'Name: ' + str(self.name)
+        buffer += '\tStart point: ' + str(self.startPoint)
+        buffer += '\tStart time: ' + str(self.startTime)
+        buffer += '\tVehicle: ' + str(self.vehicle)
+        buffer += '\nJob: ' + '\nJob'.join([str(job) for job in self.jobs])
+   #     buffer += '\nJob: ' + '\nJob: '.join([str(self.jobs[i]) + "\tPath: " + str(self.paths[i]) for i in range(len(self.jobs))])
+        return buffer
 
     
     def getStartPoint(self):
@@ -30,46 +33,47 @@ class Courier:
 
 
     def setJobs(self,jobs):
+        cargo = sum(map(lambda x: x.getWeight(), jobs))
         self.jobs = jobs
-
-
-    def setCargo(self):
-        cargo = sum(map(lambda x: x.getWeight(), self.jobs))
         self.vehicle.setCargo(cargo)
 
 
-    def doJobs(self,distanceBetween):
+    def doJobs(self,jobs,distanceBetween,pathBetween):
+
 
         try:
 
             currentCost = 0
+            startTime = self.startTime
             currentPoint = self.startPoint
             
-            self.setCargo()
+            self.setJobs(jobs)
+            self.paths.clear()
+
+            print(self)
 
             for job in self.jobs:
 
+                self.paths.append(pathBetween(currentPoint,job.getDestination()))
                 distance = distanceBetween(currentPoint,job.getDestination())
-                self.startTime += self.vehicle.wastedTime(distance)
+                startTime += self.vehicle.wastedTime(distance)
     
-                print(distance)
-                print(currentPoint)
-                print(job.getDestination())
-                print(f'hora de chegada: {self.startTime}')
+            #    print(distance)
+            #    print(currentPoint)
+            #    print(job.getDestination())
+            #    print(f'hora de chegada: {startTime}')
 
-                if self.startTime > job.getTime():
+                if startTime > job.getTime():
                     raise Exception('Too late')
 
                 currentCost += self.vehicle.pollutionCost(distance)
                 currentPoint = job.getDestination()
 
                 self.vehicle.decreaseCargo(job.getWeight())
-                self.startTime = job.getTime()
+                startTime = job.getTime()
 
             distance = distanceBetween(currentPoint,self.startPoint)
             currentCost += self.vehicle.pollutionCost(distance)
-
-            print(distance)
 
             return currentCost
 
