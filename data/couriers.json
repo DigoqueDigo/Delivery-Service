@@ -2,21 +2,25 @@
     {
         "name": "Diogo",
         "startPoint": "Montana",
+        "startTime": "09:30:00",
         "vehicle": "car"
     },
     {
         "name": "Sandra",
         "startPoint": "Florida",
+        "startTime": "08:00:00",
         "vehicle": "car"
     },
     {
         "name": "Joao",
         "startPoint": "Florida",
+        "startTime": "09:00:00",
         "vehicle": "bike"
     },
     {
         "name": "Pedro",
         "startPoint": "Alabama",
+        "startTime": "08:15:00",
         "vehicle": "scooter"
     }
 ]

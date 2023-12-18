@@ -13,14 +13,7 @@ class Manager:
         self.courierList = list()
         self.combiner = Combiner()
 
-    def addJob(self,job):
-        self.jobsList.append(job)
 
-    
-    def addCourier(self,courier):
-        self.courierList.append(courier)
-
-    
     def plotGraph(self):
         self.graph.plot()
 
@@ -38,6 +31,7 @@ class Manager:
     def loadJobs(self,dictionary):
         for job in dictionary:
             self.jobsList.append(Job(
+                job['code'],
                 job['time'],
                 job['weight'],
                 job['destination']))
@@ -57,15 +51,17 @@ class Manager:
 
             self.courierList.append(Courier(
                 vehicle,
+                courier['name'],
                 courier['startPoint'],
-                courier['name']))
+                courier['startTime']))
 
 
     def loadGraph(self,dictionary):
         for sourceNode in dictionary:
             self.graph.addNode(sourceNode)
             for neighbourNode in dictionary[sourceNode]:
-                self.graph.addEdge(sourceNode,neighbourNode,randint(0,1))
+                self.graph.addEdge(sourceNode,neighbourNode,randint(0,5))
+        self.graph.loadDictionary()
 
 
     def generateCouriersDistribution(self):
@@ -108,7 +104,7 @@ class Manager:
                 bestCost = currentCost
                 bestJobCombination = currentJobCombination
 
-        return bestCost, bestJobCombination
+        return bestCost, bestJobCombination, self.courierList
 
 
     def findRouteMultipleStates(self):
@@ -129,4 +125,4 @@ class Manager:
                 bestJobCombination = currentJobCombination
                 bestCourierCombination = currentCourierCombination
 
-        return (bestCost,bestJobCombination,bestCourierCombination)
+        return bestCost, bestJobCombination, bestCourierCombination

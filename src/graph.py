@@ -16,10 +16,6 @@ class Graph:
         self.graph.add_edge(source,destination,distance = weigth)
 
 
-    def containsNode(self,node):
-        return node in self.graph
-
-
     def distanceBetween(self,source,destination):
         return self.dictionary[source][destination]
 

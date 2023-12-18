@@ -36,38 +36,38 @@ class TextUI:
 
 
     def loadMap(self):
-        path = self.menu.getLine('Enter an file: ')
-        dictionary = self.reader.readDictionary(path)
+    #   path = self.menu.getLine('Enter an file: ')
+        dictionary = self.reader.readDictionary('data/usa.json')
         self.manager.loadGraph(dictionary)
 
 
     def loadJobs(self):
-        path = self.menu.getLine('Enter an file: ')
-        dictionary = self.reader.readDictionary(path)
+    #    path = self.menu.getLine('Enter an file: ')
+        dictionary = self.reader.readDictionary('data/jobs.json')
         self.manager.loadJobs(dictionary)
 
 
     def loadCouriers(self):
-        path = self.menu.getLine('Enter an file: ')
-        dictionary = self.reader.readDictionary(path)
+    #    path = self.menu.getLine('Enter an file: ')
+        dictionary = self.reader.readDictionary('data/couriers.json')
         self.manager.loadCouriers(dictionary)
 
     
     def limitedResources(self):
-        cost, combination = self.manager.findRouteOneState()
+        cost, combination, a = self.manager.findRouteOneState()
         print(cost)
         for key in combination:
-            for objeto in dictionary[key]:
+            for objeto in combination[key]:
                 print(objeto)
             print('---------------')
 
 
     
     def unlimitedResources(self):
-        cost, combination = self.manager.findRouteMultipleStates()
+        cost, combination, a = self.manager.findRouteMultipleStates()
         print(cost)
         for key in combination:
-            for objeto in dictionary[key]:
+            for objeto in combination[key]:
                 print(objeto)
             print('---------------')
 

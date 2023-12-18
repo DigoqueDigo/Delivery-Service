@@ -1,23 +1,26 @@
 import traceback
 from business.job import Job
-from datetime import timedelta
+from utils.timeUtils import TimeUtils
+from datetime import datetime, timedelta
 
 class Courier:
 
 
-    def __init__(self,vehicle,name='worker',startPoint='Missouri'):
+    def __init__(self,vehicle,name='worker',startPoint='Missouri',startTime=timedelta(hours=9)):
+        self.jobs = list()
         self.name = name
         self.vehicle = vehicle
         self.startPoint = startPoint
-        self.time = timedelta(hours = 9)
-        self.jobs = list()
+        self.startTime = startTime
+        if not(isinstance(startTime,timedelta)):
+            self.startTime = TimeUtils.convertStringToTime(startTime)
 
 
     def __str__(self):
         return (
             f'Name: {self.name}\t'
-            f'Start time: {self.time}\t'
             f'Start point: {self.startPoint}\t'
+            f'Start time: {self.startTime}\t'
             f'Vehicle: {self.vehicle}'
         )
 
@@ -44,27 +47,29 @@ class Courier:
             
             self.setCargo()
 
-            for job in jobs:
+            for job in self.jobs:
 
                 distance = distanceBetween(currentPoint,job.getDestination())
-                wastedTime = self.vehicle.wastedTime(distance)
-                self.time += timedelta(hours = wastedTime)
-
+                self.startTime += self.vehicle.wastedTime(distance)
+    
                 print(distance)
                 print(currentPoint)
                 print(job.getDestination())
+                print(f'hora de chegada: {self.startTime}')
 
-                if self.time > job.getTime():
+                if self.startTime > job.getTime():
                     raise Exception('Too late')
 
                 currentCost += self.vehicle.pollutionCost(distance)
                 currentPoint = job.getDestination()
 
                 self.vehicle.decreaseCargo(job.getWeight())
-                self.time = job.getTime()
+                self.startTime = job.getTime()
 
             distance = distanceBetween(currentPoint,self.startPoint)
             currentCost += self.vehicle.pollutionCost(distance)
+
+            print(distance)
 
             return currentCost
 

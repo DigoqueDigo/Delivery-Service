@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 class Vehicle:
 
     def __init__(self,speed,capacity,decrease,pollution):
@@ -54,4 +56,4 @@ class Vehicle:
 
     def wastedTime(self,distance):
         velocity = self.speed-(self.decrease*self.cargo)
-        return timedelta(hours = distance.velocity)
+        return timedelta(hours = distance/velocity)
