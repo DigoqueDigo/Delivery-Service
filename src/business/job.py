@@ -21,6 +21,10 @@ class Job:
         )
 
 
+    def getCode(self):
+        return self.code
+
+
     def getDestination(self):
         return self.destination
 

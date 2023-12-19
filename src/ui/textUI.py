@@ -57,11 +57,11 @@ class TextUI:
         dictionary = self.reader.readDictionary(path)
         self.manager.loadCouriers(dictionary)
 
-    
+
     def limitedResources(self):
         cost, couriers = self.manager.findRouteOneState()
         self.saver.saveSolution(cost,couriers)
-        
+
 
     def unlimitedResources(self):
         cost, couriers = self.manager.findRouteMultipleStates()

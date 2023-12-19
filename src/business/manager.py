@@ -120,7 +120,7 @@ class Manager:
 
             self.courierList = currentCourierCombination
             currentCost, currentCourierCombination = self.findRouteOneState()
- 
+
             if currentCost < bestCost:
                 bestCost = currentCost
                 bestCourierCombination = copy.deepcopy(currentCourierCombination)

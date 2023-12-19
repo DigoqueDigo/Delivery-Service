@@ -14,3 +14,7 @@ class Bike(Vehicle):
             Bike.capacity,
             Bike.decrease,
             Bike.pollution)
+
+
+    def __str__(self):
+        return 'Bike'

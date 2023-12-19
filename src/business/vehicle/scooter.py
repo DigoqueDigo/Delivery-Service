@@ -14,3 +14,7 @@ class Scooter(Vehicle):
             Scooter.capacity,
             Scooter.decrease,
             Scooter.pollution)
+
+
+    def __str__(self):
+        return 'Scooter'

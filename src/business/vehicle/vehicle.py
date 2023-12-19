@@ -10,16 +10,6 @@ class Vehicle:
         self.pollution = pollution
 
 
-    def __str__(self):
-        return (
-            f'Cargo: {self.cargo}\t'
-            f'Speed: {self.speed}\t'
-            f'Capacity: {self.capacity}\t'
-            f'Decrease: {self.decrease}\t'
-            f'Pollution: {self.pollution}'
-        )
-
-
     def getSpeed(self):
         return self.speed
 

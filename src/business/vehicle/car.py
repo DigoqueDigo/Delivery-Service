@@ -14,3 +14,7 @@ class Car(Vehicle):
             Car.capacity,
             Car.decrease,
             Car.pollution)
+
+
+    def __str__(self):
+        return 'Car'

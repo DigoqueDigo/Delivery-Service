@@ -21,29 +21,24 @@ class Courier:
         buffer += '\tStart point: ' + str(self.startPoint)
         buffer += '\tStart time: ' + str(self.startTime)
         buffer += '\tVehicle: ' + str(self.vehicle)
-        buffer += '\nJob: ' + '\nJob'.join([str(job) for job in self.jobs])
         return buffer
 
-    """
-    def __str__(self):
+
+    def __repr__(self):
         buffer = ''
         buffer += 'Name: ' + str(self.name)
         buffer += '\tStart point: ' + str(self.startPoint)
         buffer += '\tStart time: ' + str(self.startTime)
         buffer += '\tVehicle: ' + str(self.vehicle)
-        buffer += '\nJob: ' + '\nJob: '.join(
-            [str(self.jobs[i]) + '\tDistance: ' + str(self.paths[i][0]) +
-            '\tPath: ' + str(self.paths[i][1]) for i in range(len(self.jobs))])
-        
-        if len(self.paths) > 1:
-            buffer += '\nBack home: \tDistance: ' + str(self.paths[-1][0])
-            buffer += '\tPath: ' + str(self.paths[-1][1])
 
+        if len(self.jobs) > 0:
+            buffer += '\nJob: ' + '\nJob: '.join(
+                [self.jobs[i].getCode() + '\tDistance: ' + str(self.paths[i][0]) +
+                '\tPath: ' + str(self.paths[i][1]) for i in range(len(self.jobs))])
+
+        buffer += '\nBack home: \tDistance: ' + str(self.paths[-1][0])
+        buffer += '\tPath: ' + str(self.paths[-1][1])
         return buffer
-    """
-
-    def getStartPoint(self):
-        return self.startPoint
 
 
     def clearJobs(self):

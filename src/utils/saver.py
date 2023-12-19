@@ -10,6 +10,6 @@ class Saver:
             file.write(f'Total Cost of Deliveries {cost}\n')
 
             for courier in couriers:
-                file.write('\n' + str(courier) + '\n')
+                file.write('\n' + repr(courier) + '\n')
 
             file.close()
