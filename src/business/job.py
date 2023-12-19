@@ -1,5 +1,5 @@
-from utils.timeUtils import TimeUtils
-from datetime import datetime, timedelta
+from utils.time import Time
+from datetime import timedelta
 
 class Job:
 
@@ -9,7 +9,7 @@ class Job:
         self.weight = weight
         self.destination = destination
         if not(isinstance(time,timedelta)):
-            self.time = TimeUtils.convertStringToTime(time)
+            self.time = Time.convertStringToTime(time)
 
 
     def __str__(self):

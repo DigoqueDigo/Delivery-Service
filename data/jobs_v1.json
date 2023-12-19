@@ -1,0 +1,56 @@
+[
+  {
+    "code": "AAAA",
+    "time": "08:40:00",
+    "weight": 30,
+    "destination": "California"
+  },
+  {
+    "code": "BBBB",
+    "time": "09:00:00",
+    "weight": 10,
+    "destination": "Massachusetts"
+  },
+  {
+    "code": "CCCC",
+    "time": "09:38:00",
+    "weight": 40,
+    "destination": "Texas"
+  },
+  {
+    "code": "DDDD",
+    "time": "10:12:00",
+    "weight": 3,
+    "destination": "Michigan"
+  },
+  {
+    "code": "EEEE",
+    "time": "10:45:00",
+    "weight": 2,
+    "destination": "Nebraska"
+  },
+  {
+    "code": "FFFF",
+    "time": "11:33:00",
+    "weight": 2,
+    "destination": "Alabama"
+  },
+  {
+    "code": "GGGG",
+    "time": "11:56:00",
+    "weight": 9,
+    "destination": "Maine"
+  },
+  {
+    "code": "HHHH",
+    "time": "12:30:00",
+    "weight": 26,
+    "destination": "Oregon"
+  },
+  {
+    "code": "IIII",
+    "time": "13:15:00",
+    "weight": 13,
+    "destination": "Kansas"
+  }
+]

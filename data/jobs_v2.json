@@ -1,0 +1,32 @@
+[
+    {
+      "code": "AAAA",
+      "time": "08:40:00",
+      "weight": 30,
+      "destination": "California"
+    },
+    {
+      "code": "BBBB",
+      "time": "09:00:00",
+      "weight": 10,
+      "destination": "Massachusetts"
+    },
+    {
+      "code": "CCCC",
+      "time": "09:38:00",
+      "weight": 40,
+      "destination": "Texas"
+    },
+    {
+      "code": "DDDD",
+      "time": "10:12:00",
+      "weight": 3,
+      "destination": "Michigan"
+    },
+    {
+      "code": "EEEE",
+      "time": "10:45:00",
+      "weight": 2,
+      "destination": "Nebraska"
+    }
+]

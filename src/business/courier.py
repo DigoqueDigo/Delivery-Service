@@ -1,7 +1,5 @@
-import traceback
-from business.job import Job
-from utils.timeUtils import TimeUtils
-from datetime import datetime, timedelta
+from utils.time import Time
+from datetime import timedelta
 
 class Courier:
 
@@ -14,7 +12,7 @@ class Courier:
         self.startPoint = startPoint
         self.startTime = startTime
         if not(isinstance(startTime,timedelta)):
-            self.startTime = TimeUtils.convertStringToTime(startTime)
+            self.startTime = Time.convertStringToTime(startTime)
 
 
     def __str__(self):
@@ -69,8 +67,6 @@ class Courier:
             self.setJobs(jobs)
             self.paths.clear()
 
-        #    print(self)
-
             for job in self.jobs:
 
                 distance = distanceBetween(currentPoint,job.getDestination())
@@ -93,5 +89,4 @@ class Courier:
             return currentCost
 
         except:
-         #   traceback.print_exc()
             return float('inf')

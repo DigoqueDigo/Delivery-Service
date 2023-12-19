@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 
-class TimeUtils:
+class Time:
 
     def __init__(self):
         pass

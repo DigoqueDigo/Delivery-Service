@@ -1,11 +1,10 @@
 import copy
 from graph import Graph
 from random import randint
-from combiner import Combiner
+from utils.combiner import Combiner
 from utils.creator import Creator
 from business.job import Job
 from business.courier import Courier
-from business.vehicle import Car, Bike, Scooter
 
 class Manager:
 
@@ -13,7 +12,6 @@ class Manager:
         self.graph = Graph()
         self.jobsList = list()
         self.courierList = list()
-        self.combiner = Combiner()
 
 
     def plotGraph(self):
@@ -58,7 +56,7 @@ class Manager:
 
     def generateCouriersDistribution(self):
         courierList = []
-        combinations = self.combiner.generateDistribution(['car','bike','scooter'],len(self.jobsList))
+        combinations = Combiner.generateDistribution(['car','bike','scooter'],len(self.jobsList))
 
         for i in range(len(combinations)):
             courierList.append(list())
@@ -69,7 +67,7 @@ class Manager:
 
 
     def generateJobsDistributions(self):
-        return self.combiner.generateBoxDistributions(
+        return Combiner.generateBoxDistributions(
             len(self.courierList),
             self.jobsList)
 
@@ -79,7 +77,7 @@ class Manager:
         bestCost = float('inf')
         bestCourierCombination = []
 
-        jobCombinations = self.combiner.generateBoxDistributions(
+        jobCombinations = Combiner.generateBoxDistributions(
             len(self.courierList),
             self.jobsList
         )
@@ -113,6 +111,7 @@ class Manager:
         bestCost = float('inf')
         bestCourierCombination = []
 
+        temp = copy.deepcopy(self.courierList)
         couriersCombinations = self.generateCouriersDistribution()
 
         for currentCourierCombination in couriersCombinations:
@@ -124,5 +123,5 @@ class Manager:
                 bestCost = currentCost
                 bestCourierCombination = copy.deepcopy(currentCourierCombination)
 
-        self.courierList = []
+        self.courierList = temp
         return bestCost, bestCourierCombination

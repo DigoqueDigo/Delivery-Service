@@ -15,7 +15,7 @@ class TextUI:
 
     def setMenu(self):
         self.menu.addOption('1 - Load Map', self.loadMap)
-        self.menu.addOption('2 - Plot Map', self.plotMap)
+        self.menu.addOption('2 - Show Map', self.showMap)
         self.menu.addOption('3 - Load Jobs', self.loadJobs)
         self.menu.addOption('4 - Show Jobs', self.showJobs)
         self.menu.addOption('5 - Load Couriers', self.loadCouriers)
@@ -25,12 +25,16 @@ class TextUI:
         self.menu.addOption('9 - Exit', self.byMessage)
 
 
-    def implementing(self):
-        self.menu.printErrorMessage("Implementing...")
-
-
-    def plotMap(self):
+    def showMap(self):
         self.manager.plotGraph()
+
+
+    def showJobs(self):
+        print(self.manager.showJobs())
+
+
+    def showCouriers(self):
+        print(self.manager.showCouriers())
 
 
     def byMessage(self):
@@ -38,20 +42,20 @@ class TextUI:
 
 
     def loadMap(self):
-    #   path = self.menu.getLine('Enter an file: ')
-        dictionary = self.reader.readDictionary('data/usa.json')
+        path = self.menu.getLine('Enter an file: ')
+        dictionary = self.reader.readDictionary(path)
         self.manager.loadGraph(dictionary)
 
 
     def loadJobs(self):
-    #    path = self.menu.getLine('Enter an file: ')
-        dictionary = self.reader.readDictionary('data/jobs.json')
+        path = self.menu.getLine('Enter an file: ')
+        dictionary = self.reader.readDictionary(path)
         self.manager.loadJobs(dictionary)
 
 
     def loadCouriers(self):
-    #    path = self.menu.getLine('Enter an file: ')
-        dictionary = self.reader.readDictionary('data/aa.json')
+        path = self.menu.getLine('Enter an file: ')
+        dictionary = self.reader.readDictionary(path)
         self.manager.loadCouriers(dictionary)
 
     
@@ -63,14 +67,6 @@ class TextUI:
     def unlimitedResources(self):
         cost, couriers = self.manager.findRouteMultipleStates()
         self.saver.saveSolution(cost,couriers)
-
-
-    def showJobs(self):
-        print(self.manager.showJobs())
-
-
-    def showCouriers(self):
-        print(self.manager.showCouriers())
 
 
     def run(self):

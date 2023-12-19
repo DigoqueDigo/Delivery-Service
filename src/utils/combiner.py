@@ -1,4 +1,4 @@
-from itertools import product
+from itertools import product, combinations_with_replacement
 
 class Combiner:
 
@@ -6,11 +6,11 @@ class Combiner:
         pass
 
 
-    def generateDistribution(self,elements,repeats):
-        return list(product(elements,repeat=repeats))
+    def generateDistribution(elements,repeats):
+        return list(combinations_with_replacement(elements,repeats))
 
 
-    def generateBoxDistributions(self,NBoxes,elements):
+    def generateBoxDistributions(NBoxes,elements):
 
         boxes = [f'{i}' for i in range(NBoxes)]
 

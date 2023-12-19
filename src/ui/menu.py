@@ -1,4 +1,3 @@
-import traceback
 from ui.reader import Reader
 from colorama import Fore, Style
 
@@ -53,4 +52,3 @@ class Menu:
 
             except Exception as e:
                 print(f'{Fore.RED}{Style.BRIGHT}Invalid entry{Style.RESET_ALL}')
-                traceback.print_exc()
