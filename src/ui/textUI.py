@@ -1,6 +1,5 @@
 from ui.menu import Menu
 from ui.reader import Reader
-from business.job import Job
 from utils.saver import Saver
 from business.manager import Manager
 

@@ -56,7 +56,9 @@ class Manager:
 
     def generateCouriersDistribution(self):
         courierList = []
-        combinations = Combiner.generateDistribution(['car','bike','scooter'],len(self.jobsList))
+        combinations = Combiner.generateDistribution(
+            ['car','bike','scooter'],
+            len(self.jobsList))
 
         for i in range(len(combinations)):
             courierList.append(list())
@@ -111,7 +113,7 @@ class Manager:
         bestCost = float('inf')
         bestCourierCombination = []
 
-        temp = copy.deepcopy(self.courierList)
+        temp = self.courierList
         couriersCombinations = self.generateCouriersDistribution()
 
         for currentCourierCombination in couriersCombinations:
